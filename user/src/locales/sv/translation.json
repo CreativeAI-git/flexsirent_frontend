@@ -1,0 +1,22 @@
+{
+  "welcome": "Välkommen till FlexiRent!",
+  "home": "Hem",
+  "blogs": "Bloggar",
+  "help": "Hjälp",
+  "login": "Logga in",
+  "becomeHost": "Bli en värd",
+  "signUp": "Registrera dig",
+  "forgotPassword": "Glömt lösenord",
+  "language": "Språk",
+  "logOut": "Logga ut",
+  "signUpAsGuest": "Registrera dig som gäst",
+  "signUpAsHost": "Registrera dig som värd",
+  "loginAsGuest": "Logga in som gäst",
+  "loginAsHost": "Logga in som värd",
+  "welcomeToFlexsi": "Välkommen till Flexsi",
+  "findHome": "Hitta en bostad som passar din mid-term",
+  "lifestyle": "livsstil",
+  "flexible": "Flexibel",
+  "secure": "Säker",
+  "affordable": "Affärbar"
+}

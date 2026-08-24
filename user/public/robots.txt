@@ -1,0 +1,50 @@
+# Flexsirent robots.txt — official (v1, 2026-07-27)
+# Policy: open to search engines and the AI crawlers listed below.
+# SEO and AI visibility share the same architecture: SSR pages + schema.org.
+
+User-agent: *
+Allow: /
+
+# --- Search engines ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- AI crawlers (training / index) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# --- AI user-triggered fetchers (answer live user questions) ---
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+Sitemap: https://flexsirent.com/sitemap.xml

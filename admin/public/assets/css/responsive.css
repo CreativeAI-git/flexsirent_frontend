@@ -1,0 +1,273 @@
+@media screen and (max-width: 1500px) {
+  .ct_dash_card {
+    padding: 30px;
+  }
+  .ct_fs_48 {
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 1270px) {
+  .ct_p_30 {
+    padding: 15px !important;
+  }
+  .ct_login_form {
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .ct_flex_col_1199 {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .ct_w_100_1199 {
+    width: 100% !important;
+  }
+  .chatlist {
+    width: 300px;
+  }
+  .chat-list a.d-flex {
+    padding-inline: 8px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .ct_dash_card {
+    padding: 30px;
+  }
+  /* .ct_card_icon {
+    margin-inline: auto;
+  } */
+  .ct_side_bar {
+    left: -100%;
+    padding-top: 40px;
+  }
+  .ct_right_panel {
+    margin-left: 0px;
+    width: 100%;
+  }
+  .ct_show .ct_side_bar {
+    left: 0px;
+  }
+  .ct_show .ct_side_bar {
+    left: 0px;
+  }
+  .ct_close_sidebar {
+    position: absolute;
+    display: block;
+    right: 15px;
+    top: 0px;
+    font-size: 22px;
+    transition: 0.4s ease all;
+  }
+  .ct_close_sidebar:hover {
+    transform: rotate(360deg);
+  }
+  .ct_menu_bar {
+    display: block;
+  }
+  .ct_px_30 {
+    padding: 0px;
+  }
+  .ct_login_left_img {
+    display: none;
+  }
+  .ct_login_white_bg {
+    border-radius: 20px;
+  }
+  .ct_login_form {
+    padding: 30px;
+  }
+  .ct_flex_row_991 {
+    flex-direction: row;
+  }
+
+  
+  .ct_inquery_main {
+    grid-template-columns: repeat(2, 1fr);
+}
+.ct_inquery_main li + li {
+  border-left: 0px;
+  padding-left: 0px;
+}
+}
+@media screen and (max-width: 767px) {
+  .ct_fs_36 {
+    font-size: 28px;
+  }
+  .ct_flex_col_767 {
+    flex-direction: column !important;
+    align-items: start !important;
+  }
+  .ct_right_dropdown button img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+  }
+  .ct_w_100_767 {
+    width: 100%;
+  }
+  .ct_right_dropdown button {
+    padding-inline: 7px;
+  }
+
+  .ct_flex_column_767 {
+    flex-direction: column;
+    align-items: start !important;
+  }
+  .ct_w_100_search_767 {
+    max-width: 100% !important;
+  }
+  .ct_amenties_list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ct_pe_40 {
+    padding-right: 20px;
+  }
+  .ct_light_blue_outline {
+    padding-inline: 20px;
+  }
+  .ct_grid_4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .ct_view_profile_list li {
+
+    grid-template-columns: 36% auto;
+  }
+  .ct_view_profile_list li p {
+    font-size: 14px;
+}
+
+.chat-icon {
+  display: block;
+  margin-right: 5px;
+}
+.chatlist {
+  width: 100%;
+}
+.chatbox {
+  width: 100%;
+  position: absolute;
+  left: 1000px;
+  right: 0;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: all 0.5s ease;
+  border-left: none;
+}
+.showbox {
+  left: 0 !important;
+  transition: all 0.5s ease;
+  padding-inline: 15px;
+}
+.msg-head h3 {
+  font-size: 14px;
+}
+.msg-head p {
+  font-size: 12px;
+}
+.msg-head .flex-shrink-0 img {
+  height: 30px;
+}
+.send-box button {
+  width: 28%;
+}
+
+.chat-list h3 {
+  font-size: 14px;
+}
+.chat-list p {
+  font-size: 12px;
+}
+.msg-body ul li.sender {
+  font-size: 13px;
+  padding: 8px;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.msg-body ul li.repaly p {
+  font-size: 13px;
+  padding: 8px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.msg-body ul li img {
+  width: 30px;
+  height: 30px;
+}
+
+.ct_custom_tabs {
+
+  display: grid
+;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+.ct_custom_tabs button{
+  width: 100%;
+}
+.ct_custom_tabs.nav-pills .nav-link {
+  padding-inline: 30px;
+}
+
+.ct_gallery_left img {
+  height: 213px;
+
+}
+
+.ct_gallery {
+  grid-template-columns: auto;
+}
+.ct_upload_user_profile_img img {
+  width: 70px;
+  height: 70px;
+
+}
+}
+
+@media screen and (max-width: 575px) {
+  .ct_border_right_1 {
+    border-right: none;
+    padding-right: 0px;
+  }
+  .ct_flex_col_575 {
+    flex-direction: column;
+    align-items: start !important;
+    /* gap: 3px !important; */
+  }
+  .ct_gap_15_575 {
+    gap: 15px !important;
+  }
+
+  .ct_custom_tab button {
+    padding-inline: 25px;
+  }
+  .ct_amenties_list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .ct_fs_24 {
+    font-size: 20px;
+  }
+  p,
+  input,
+  label
+   {
+    font-size: 14px;
+  }
+  .ct_w_100_575 {
+    width: 100%;
+  }
+  .ct_search {
+    max-width: 100%;
+  }
+  .ct_fs_16 {
+    font-size: 14px;
+}
+.ct_light_yellow_bg {
+  padding: 20px;
+}
+}

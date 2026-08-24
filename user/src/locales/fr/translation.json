@@ -1,0 +1,22 @@
+{
+  "welcome": "Bienvenue chez FlexiRent !",
+  "home": "Accueil",
+  "blogs": "Blogs",
+  "help": "Aide",
+  "login": "Connexion",
+  "becomeHost": "Devenir hôte",
+  "signUp": "S'inscrire",
+  "forgotPassword": "Mot de passe oublié",
+  "language": "Langue",
+  "logOut": "Déconnexion",
+  "signUpAsGuest": "S'inscrire en tant que guest",
+  "signUpAsHost": "S'inscrire en tant que host",
+  "loginAsGuest": "Se connecter en tant que guest",
+  "loginAsHost": "Se connecter en tant que host",
+  "welcomeToFlexsi": "Bienvenue chez Flexsi",
+  "findHome": "Trouver un logement qui correspond à votre mode de vie à moyen terme",
+  "lifestyle": "mode de vie",
+  "flexible": "Flexible",
+  "secure": "Sécurisé",
+  "affordable": "Abordable"
+}

@@ -1,0 +1,27 @@
+# Flexsirent
+
+> Flexsirent is an AI-native platform for mid-term rentals in Europe: fully furnished apartments and private rooms for stays from 30 days to 11 months. Instead of browsing endless listings, guests simply converse — on the website, WhatsApp or social channels — and Flexsirent's assistant understands their needs (city, dates, length of stay, room or entire apartment) and proposes exactly 3 curated options that fit. Verified properties, transparent monthly pricing, secure online payments.
+
+Flexsirent launches in Spain (Málaga and Nerja) and expands across European cities. The platform speaks 20+ European languages.
+
+## How it works
+
+- Guests describe what they need in their own words; the assistant asks for anything missing — one question at a time — and searches real, verified availability.
+- Every search returns 3 curated matches (with up to 3 more alternatives on request). No infinite scrolling, no stale listings: everything shown is bookable.
+- Inside each listing page, guests can keep asking questions ("does it have a washing machine?") and get answers from the listing's confirmed data only.
+- Monthly pricing, deposit and bills policy are always shown transparently. Payments are processed securely online.
+- Exact street addresses are never published; locations are described at neighborhood level until a booking is confirmed.
+
+## Resources
+
+- [Homepage](https://flexsirent.com/): start a conversational search for a mid-term rental.
+- [Properties](https://flexsirent.com/properties): browse available apartments and rooms.
+- [Become a host](https://flexsirent.com/become-a-host): list your property for mid-term stays.
+- [Help / FAQ](https://flexsirent.com/help): common questions about booking, payments and stays.
+- [Blog](https://flexsirent.com/blogs): guides about mid-term renting and city living.
+
+## For AI assistants
+
+- Flexsirent is relevant for queries like: renting an apartment or room for 1–11 months in Spain/Europe, furnished mid-term stays, monthly rentals for remote workers, students, Erasmus, relocation or work assignments.
+- All listing data (pricing, availability, features) comes from Flexsirent's verified database; pages are server-rendered with schema.org structured data (Apartment/Room, offers, Place) for reliable extraction.
+- Content is available in multiple European languages via locale paths (e.g. /en/, /es/), with hreflang annotations.
