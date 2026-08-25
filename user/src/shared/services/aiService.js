@@ -5,7 +5,7 @@ const AI_CONFIG = {
   url: import.meta.env.VITE_AI_URL || (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
     ? "/api-gateway"
     : "https://api.flexsirent.com"),
-  token: import.meta.env.VITE_AI_TOKEN || "fsr_live_9f3c1a7e5b28d64084ac1177e2b93f0a"
+  token: import.meta.env.VITE_AI_TOKEN
 };
 
 /**

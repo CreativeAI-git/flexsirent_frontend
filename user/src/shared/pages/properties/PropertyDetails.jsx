@@ -39,7 +39,7 @@ export async function loader({ params }) {
   if (isTridentId) {
     try {
       const aiUrl = (import.meta.env.VITE_AI_URL || "https://api.flexsirent.com").replace(/\/+$/, "");
-      const aiToken = import.meta.env.VITE_AI_TOKEN || "fsr_live_9f3c1a7e5b28d64084ac1177e2b93f0a";
+      const aiToken = import.meta.env.VITE_AI_TOKEN;
       const res = await axios.get(`${aiUrl}/listings/${listing_id}`, {
         headers: {
           Authorization: `Bearer ${aiToken}`

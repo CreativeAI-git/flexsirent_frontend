@@ -37,7 +37,7 @@ VITE_SOCKET_URL=https://backend.flexsirent.com
 VITE_AI_URL=https://api.flexsirent.com
 
 # AI Gateway API Bearer Token
-VITE_AI_TOKEN=fsr_live_9f3c1a7e5b28d64084ac1177e2b93f0a
+VITE_AI_TOKEN=<configure in the environment, never commit>
 
 # Production Site Canonical Base Address (used for SEO & canonical tag generation)
 VITE_CANONICAL_URL=https://flexsirent.com
