@@ -12,11 +12,10 @@ export const API_REQUEST = async (props) => {
     params,
     isErrorToast = true,
     isSuccessToast = true,
-    loggedInRole=""
+    loggedInRole = ""
   } = props;
 
   const token = getToken(loggedInRole ? loggedInRole : getActivePanel());
-//   getActivePanel()
   const requestOptions = {
     url: BASE_URL + url,
     method,

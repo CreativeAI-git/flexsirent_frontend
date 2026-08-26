@@ -329,7 +329,8 @@ export function useAIDiscovery() {
         message,
         chat_history,
         trident_results,
-        suggestions: returnedSuggestions
+        suggestions: returnedSuggestions,
+        question
       } = response;
 
       // Merge server-returned intent WITHOUT letting server nulls overwrite our known values.
@@ -351,8 +352,8 @@ export function useAIDiscovery() {
       // Build AI chat message for this turn
       let aiMessage;
       if (action === "NEED_INFO") {
-        // Generate contextual question based on which fields are still missing
-        aiMessage = buildNeedInfoQuestion(mergedIntent, locale);
+        // Use the server-provided localized question directly if available
+        aiMessage = question || buildNeedInfoQuestion(mergedIntent, locale);
       } else if (action === "SHOW_3") {
         aiMessage = locale === "es"
           ? "¡He encontrado 3 opciones perfectas para ti! Elige la que más te guste."

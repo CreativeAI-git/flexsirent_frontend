@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocalizedNavigate } from "@/shared/hooks/useLocalizedNavigate";
 import moment from "moment";
 import PhoneInput from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
 import ErrorMessage from "../form/ErrorMessage";
 import SelectDropdown from "../form/SelectDropdown";
 import { hostStripeSetupSchema } from "../../utils/schema";
@@ -228,6 +229,7 @@ const HostStripeSetupModal = ({
                         <div className="form-group mb-4 ct_phon_input_35">
                           <label className="mb-2 ct_fw_400">Phone Number</label>
                           <PhoneInput
+                            flags={flags}
                             international
                             defaultCountry="ES"
                             className="ct_phone_input"

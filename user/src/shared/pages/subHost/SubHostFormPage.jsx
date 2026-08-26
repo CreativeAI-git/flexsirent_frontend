@@ -14,6 +14,7 @@ import {
 } from "../../../redux/features/host/actions/authAction";
 
 import PhoneInput from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
 
 const SubHostFormPage = ({ mode = "add", panelRole, routes }) => {
   const isEdit = mode === "edit";
@@ -181,6 +182,7 @@ const SubHostFormPage = ({ mode = "add", panelRole, routes }) => {
                     <div className="form-group mb-4">
                       <label className="mb-2 ct_fw_500">Phone Number</label>
                       <PhoneInput
+                        flags={flags}
                         international
                         defaultCountry="ES"
                         className="ct_phone_input"

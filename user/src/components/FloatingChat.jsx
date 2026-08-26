@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router";
 import { useAuiState } from "@assistant-ui/react";
 import { useAIChat } from "../shared/context/AIChatContext";
 import { useLocalizedNavigate } from "../shared/hooks/useLocalizedNavigate";
@@ -15,10 +16,12 @@ import ListingAnswerComponent from "./chat/ListingAnswerComponent";
 export default function FloatingChat() {
   const { t } = useTranslation();
   const navigate = useLocalizedNavigate();
+  const location = useLocation();
   const {
     sessionId,
     hasSearched,
     isMinimized,
+    moreAvailable,
     runtime,
     toggleMinimize,
     resetChat,
@@ -34,16 +37,19 @@ export default function FloatingChat() {
   const chatBodyRef = useRef(null);
   const textareaRef = useRef(null);
 
+  // Set base bottom offset to 24px universally across all pages
+  const baseOffset = 24;
+
   // Dynamic bottom positioning to prevent footer overlap
-  const [footerOverlapOffset, setFooterOverlapOffset] = useState(24);
+  const [footerOverlapOffset, setFooterOverlapOffset] = useState(baseOffset);
 
   useEffect(() => {
-    if (!hasSearched || isMinimized) return;
+    if (!hasSearched) return;
 
     const handleScroll = () => {
-      const footer = document.querySelector("footer");
+      const footer = document.querySelector("footer, .site-footer, .web-footer");
       if (!footer) {
-        setFooterOverlapOffset(24);
+        setFooterOverlapOffset(baseOffset);
         return;
       }
 
@@ -52,9 +58,9 @@ export default function FloatingChat() {
 
       if (footerRect.top < viewportHeight) {
         const visibleFooterHeight = viewportHeight - footerRect.top;
-        setFooterOverlapOffset(visibleFooterHeight + 24);
+        setFooterOverlapOffset(visibleFooterHeight + baseOffset);
       } else {
-        setFooterOverlapOffset(24);
+        setFooterOverlapOffset(baseOffset);
       }
     };
 
@@ -114,13 +120,7 @@ export default function FloatingChat() {
     }
   };
 
-  // Determine if the last assistant message is a NEED_INFO action
-  // to toggle composer visibility/disabled state
-  const lastMessage = messages[messages.length - 1];
-  const isLastMessageNeedInfo =
-    lastMessage?.role === "assistant" &&
-    lastMessage.content?.[0]?.type === "custom-payload" &&
-    lastMessage.content[0].data?.action === "NEED_INFO";
+  const isLastMessageNeedInfo = false;
 
   return (
     <>
@@ -312,7 +312,7 @@ export default function FloatingChat() {
           font-weight: 700;
           font-size: 14px;
           z-index: 1050;
-          transition: transform 0.2s ease;
+          transition: transform 0.2s ease, bottom 0.3s ease;
         }
         .floating-chat-badge:hover {
           transform: translateY(-2px);
@@ -365,6 +365,11 @@ export default function FloatingChat() {
           margin-top: 8px;
           scrollbar-width: thin;
         }
+        .chat-properties-scroll::after {
+          content: "";
+          width: 12px;
+          flex-shrink: 0;
+        }
         .chat-property-card {
           width: 220px;
           flex-shrink: 0;
@@ -380,7 +385,7 @@ export default function FloatingChat() {
         }
         .chat-property-card:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
         .chat-property-card__image-container {
           position: relative;
@@ -389,7 +394,7 @@ export default function FloatingChat() {
         }
         .chat-property-card__image {
           width: 100%;
-          height: 100%;
+          height: 120px;
           object-fit: cover;
         }
         .chat-property-card__badge {
@@ -408,7 +413,7 @@ export default function FloatingChat() {
           font-size: 11px;
         }
         .chat-property-card__content {
-          padding: 10px;
+          padding: 10px 12px;
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -458,23 +463,23 @@ export default function FloatingChat() {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
-          margin-top: 8px;
+          margin-top: 10px;
         }
         .chat-action-chip {
+          background: #ffffff;
           border: 1px solid #efe6d8;
-          background-color: #ffffff;
-          color: #FF7F00;
-          font-weight: 600;
-          border-radius: 99px;
+          color: #171717;
           padding: 6px 12px;
+          border-radius: 999px;
           font-size: 12px;
+          font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
         }
         .chat-action-chip:hover {
-          background-color: #FF7F00;
-          color: #ffffff;
+          background: #FF7F00;
           border-color: #FF7F00;
+          color: #ffffff;
         }
         
         .chat-fallback-alert {
@@ -508,7 +513,7 @@ export default function FloatingChat() {
       `}} />
 
       {isMinimized ? (
-        <div className="floating-chat-badge" onClick={toggleMinimize}>
+        <div className="floating-chat-badge" onClick={toggleMinimize} style={{ bottom: `${footerOverlapOffset}px` }}>
           <i className="fa-solid fa-robot"></i>
           <span>{isEs ? "Descubrimiento IA" : "AI Discovery"}</span>
         </div>
@@ -586,8 +591,8 @@ export default function FloatingChat() {
                 <div
                   key={msg.id || idx}
                   className={`floating-chat-message-row ${isUser
-                      ? "floating-chat-message-row--user"
-                      : "floating-chat-message-row--assistant"
+                    ? "floating-chat-message-row--user"
+                    : "floating-chat-message-row--assistant"
                     }`}
                 >
                   {!isUser && (
@@ -600,8 +605,8 @@ export default function FloatingChat() {
                   )}
                   <div
                     className={`floating-chat-message-bubble ${isUser
-                        ? "floating-chat-message-bubble--user"
-                        : "floating-chat-message-bubble--assistant"
+                      ? "floating-chat-message-bubble--user"
+                      : "floating-chat-message-bubble--assistant"
                       }`}
                     style={{ width: msg.content.some(p => p.type === "custom-payload") ? "100%" : "auto" }}
                   >
@@ -616,13 +621,13 @@ export default function FloatingChat() {
                         const { action, intent, trident_results } = payload;
 
                         if (action === "NEED_INFO") {
+                          const questionText = payload.question || (locale.startsWith("es")
+                            ? "¿En qué ciudad buscas el alojamiento? (ej. Málaga, Madrid, Barcelona)"
+                            : "Which city are you looking for accommodation in? (e.g. Málaga, Madrid, Barcelona)");
                           return (
-                            <NeedInfoComponent
-                              key={pIdx}
-                              intent={intent}
-                              locale={locale}
-                              onSubmitAnswer={sendProgrammaticMessage}
-                            />
+                            <span key={pIdx} style={{ display: "block", lineHeight: "1.5" }}>
+                              {questionText}
+                            </span>
                           );
                         }
 
@@ -635,6 +640,7 @@ export default function FloatingChat() {
                               locale={locale}
                               navigate={navigate}
                               onSubmitAnswer={sendProgrammaticMessage}
+                              moreAvailable={payload.more_available !== false}
                             />
                           );
                         }

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 const OPTION_LABELS = ["A", "B", "C"];
 
-export default function Show3Component({ tridentResults, sessionId, locale, navigate, onSubmitAnswer }) {
+export default function Show3Component({ tridentResults, sessionId, locale, navigate, onSubmitAnswer, moreAvailable }) {
   const { t } = useTranslation();
   const isEs = locale.startsWith("es");
 
@@ -61,6 +61,14 @@ export default function Show3Component({ tridentResults, sessionId, locale, navi
       </div>
 
       <div className="chat-action-chips">
+        {moreAvailable && (
+          <button
+            className="chat-action-chip"
+            onClick={() => onSubmitAnswer(isEs ? "Más opciones" : "More options")}
+          >
+            {isEs ? "Ver más" : "More options"}
+          </button>
+        )}
         <button
           className="chat-action-chip"
           onClick={() => onSubmitAnswer(isEs ? "Cambiar fechas" : "Change dates")}

@@ -38,8 +38,8 @@ export async function loader({ params }) {
 
   if (isTridentId) {
     try {
-      const aiUrl = (import.meta.env.VITE_AI_URL || "https://api.flexsirent.com").replace(/\/+$/, "");
-      const aiToken = import.meta.env.VITE_AI_TOKEN;
+      const aiUrl = (process.env.AI_URL || import.meta.env.VITE_AI_URL || "https://api.flexsirent.com").replace(/\/+$/, "");
+      const aiToken = process.env.AI_TOKEN || import.meta.env.VITE_AI_TOKEN;
       const res = await axios.get(`${aiUrl}/listings/${listing_id}`, {
         headers: {
           Authorization: `Bearer ${aiToken}`
@@ -154,7 +154,8 @@ export function meta({ data, params }) {
   const prop = data.propertyData;
   const lang = params.lang || "en";
   const listingId = params.listing_id;
-  const url = `https://flexsirent.com/${lang}/l/${listingId}`;
+  const canonicalBase = (import.meta.env.VITE_CANONICAL_URL || "https://flexsirent.com").replace(/\/+$/, "");
+  const url = `${canonicalBase}/${lang}/l/${listingId}`;
   const maskedAddress = getMaskedAddress(prop.address || "");
 
   const jsonLd = {

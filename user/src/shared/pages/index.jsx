@@ -28,6 +28,47 @@ export function meta({ data, params }) {
   const title = seo?.meta_title || "Flexsirent | Flexible Medium Term Rentals";
   const description = seo?.meta_description || "Book flexible stays, apartments, rooms, and properties for medium term rentals on Flexsirent.";
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${canonicalBase}/${lang}/#website`,
+        "url": url,
+        "name": "Flexsirent",
+        "description": description,
+        "potentialAction": [
+          {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": `${canonicalBase}/${lang}/properties?location={search_term_string}`
+            },
+            "query-input": "required name=search_term_string"
+          }
+        ],
+        "inLanguage": lang
+      },
+      {
+        "@type": "Organization",
+        "@id": `${canonicalBase}/#organization`,
+        "name": "Flexsirent",
+        "url": canonicalBase,
+        "logo": {
+          "@type": "ImageObject",
+          "@id": `${canonicalBase}/#logo`,
+          "url": `${canonicalBase}/assets/img/logo.svg`,
+          "caption": "Flexsirent Logo"
+        },
+        "sameAs": [
+          "https://www.facebook.com/flexsirent",
+          "https://www.instagram.com/flexsirent",
+          "https://twitter.com/flexsirent"
+        ]
+      }
+    ]
+  };
+
   return [
     { title },
     { name: "description", content: description },
@@ -35,7 +76,8 @@ export function meta({ data, params }) {
     { property: "og:description", content: description },
     { property: "og:url", content: url },
     { tagName: "link", rel: "canonical", href: url },
-    ...getHrefLangs("")
+    ...getHrefLangs(""),
+    { "script:ld+json": structuredData }
   ];
 }
 

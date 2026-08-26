@@ -7,6 +7,9 @@ export default [
   // Dynamic Sitemap Route
   route("sitemap.xml", "routes/sitemap.jsx"),
 
+  // API Proxy Routes
+  route("api/ai/search", "routes/api.ai.search.jsx"),
+
   // Language Layout
   route(":lang", "routes/langLayout.jsx", [
     // Public Pages (SSR)
