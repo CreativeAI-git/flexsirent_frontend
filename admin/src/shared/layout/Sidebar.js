@@ -18,138 +18,138 @@ const Sidebar = () => {
   const adminSidebar = [
     {
       name: "Dashboard",
-      img: "https://app.flexsirent.com/admin/assets/img/dashboard_icon.svg",
+      img: "assets/img/dashboard_icon.svg",
       path: pageRoutes.dashboard,
     },
     {
       name: "User Management",
-      img: "https://app.flexsirent.com/admin/assets/img/user_management_icon.svg",
+      img: "assets/img/user_management_icon.svg",
       path: pageRoutes.userManagement,
     },
     {
       name: "Host Management",
-      img: "https://app.flexsirent.com/admin/assets/img/host_management_icon.svg",
+      img: "assets/img/host_management_icon.svg",
       path: pageRoutes.hostManagement,
     },
     {
       name: "Business Management",
-      img: "https://app.flexsirent.com/admin/assets/img/business_management_icon.svg",
+      img: "assets/img/business_management_icon.svg",
       path: pageRoutes.businessManagement,
     },
     {
       name: "Host Business Management",
-      img: "https://app.flexsirent.com/admin/assets/img/host_business_management_icon.svg",
+      img: "assets/img/host_business_management_icon.svg",
       path: pageRoutes.hostBusinessManagement,
     },
     {
       name: "Property Management",
-      img: "https://app.flexsirent.com/admin/assets/img/property_management_icon.svg",
+      img: "assets/img/property_management_icon.svg",
       path: pageRoutes.propertyManagement,
     },
     {
       name: "Booking Overview",
-      img: "https://app.flexsirent.com/admin/assets/img/booking_review_icon.svg",
+      img: "assets/img/booking_review_icon.svg",
       path: pageRoutes.bookingmanagement,
     },
     // {
     //     name: "Contracts",
-    //     img: "https://app.flexsirent.com/admin/assets/img/contract_icon.svg",
+    //     img: "assets/img/contract_icon.svg",
     //     path: ''
     // },
     {
       name: "Blog Management",
-      img: "https://app.flexsirent.com/admin/assets/img/blog_management_icon.svg",
+      img: "assets/img/blog_management_icon.svg",
       path: pageRoutes.blogManagement,
     },
     {
       name: "Reviews",
-      img: "https://app.flexsirent.com/admin/assets/img/reviews_icon.svg",
+      img: "assets/img/reviews_icon.svg",
       path: pageRoutes.reviews,
     },
 
     {
       name: "Sub Admin",
-      img: "https://app.flexsirent.com/admin/assets/img/sub admin icon.svg",
+      img: "assets/img/sub admin icon.svg",
       path: pageRoutes.subAdmin,
     },
     // {
     //   name: "Booking Calendar",
-    //   img: "https://app.flexsirent.com/admin/assets/img/booking_calander_icon.svg",
+    //   img: "assets/img/booking_calander_icon.svg",
     //   path: pageRoutes.bookingCalender,
     // },
     {
       name: "Chat Management",
-      img: "https://app.flexsirent.com/admin/assets/img/chat_management_icon.svg",
+      img: "assets/img/chat_management_icon.svg",
       path: pageRoutes.chatManagement,
     },
     {
       name: "Cancellation Policy Management",
-      img: "https://app.flexsirent.com/admin/assets/img/policy_management_icon.svg",
+      img: "assets/img/policy_management_icon.svg",
       path: pageRoutes.cancellationPolicyManagement,
     },
     {
       name: "Policy Management",
-      img: "https://app.flexsirent.com/admin/assets/img/policy_management_icon.svg",
+      img: "assets/img/policy_management_icon.svg",
       path: pageRoutes.policyManagement,
     },
     {
       name: "SEO Management",
-      img: "https://app.flexsirent.com/admin/assets/img/seo_management_icon.svg",
+      img: "assets/img/seo_management_icon.svg",
       path: pageRoutes.seoManagement,
     },
     // {
     //   name: "Manage Listing",
-    //   img: "https://app.flexsirent.com/admin/assets/img/listing_request_icon.svg",
+    //   img: "assets/img/listing_request_icon.svg",
     //   path: pageRoutes.manageListings,
     // },
     {
       name: "Listing Request",
-      img: "https://app.flexsirent.com/admin/assets/img/Listing request icon.svg",
+      img: "assets/img/Listing request icon.svg",
       path: pageRoutes.listingsRequest,
     },
     // {
     //   name: "Manage Reservation",
-    //   img: "https://app.flexsirent.com/admin/assets/img/manage_reservation_icon.svg",
+    //   img: "assets/img/manage_reservation_icon.svg",
     //   path: pageRoutes.manageReservation,
     // },
     {
       name: "Manage Inquiry",
-      img: "https://app.flexsirent.com/admin/assets/img/manage_inquiry_icon.svg",
+      img: "assets/img/manage_inquiry_icon.svg",
       path: pageRoutes.manageInquiry,
     },
     {
       name: "Offers",
-      img: "https://app.flexsirent.com/admin/assets/img/offers.svg",
+      img: "assets/img/offers.svg",
       path: pageRoutes.offers,
     },
     {
       name: "Report Management",
-      img: "https://app.flexsirent.com/admin/assets/img/report_management_icon.svg",
+      img: "assets/img/report_management_icon.svg",
       path: pageRoutes.reportManagement,
     },
     {
       name: "Manage Service Fee",
-      img: "https://app.flexsirent.com/admin/assets/img/manage_Service_fee_icon.svg",
+      img: "assets/img/manage_Service_fee_icon.svg",
       path: pageRoutes?.manageServiceFee,
     },
     {
       name: "Manage Payout",
-      img: "https://app.flexsirent.com/admin/assets/img/manage_payout_icon.svg",
+      img: "assets/img/manage_payout_icon.svg",
       path: pageRoutes?.managePayout,
     },
     {
       name: "Support Tickets",
-      img: "https://app.flexsirent.com/admin/assets/img/support_icon.svg",
+      img: "assets/img/support_icon.svg",
       path: pageRoutes.support,
     },
     {
       name: "Contact Us",
-      img: "https://app.flexsirent.com/admin/assets/img/contact_us_icon.svg",
+      img: "assets/img/contact_us_icon.svg",
       path: pageRoutes?.contactUs,
     },
     {
       name: "KYC Management",
-      img: "https://app.flexsirent.com/admin/assets/img/verification_manangement_icon.svg",
+      img: "assets/img/verification_manangement_icon.svg",
       path: pageRoutes?.verificationManagement,
     },
   ];
@@ -177,7 +177,7 @@ const Sidebar = () => {
         <i className="fa-solid fa-xmark"></i>
       </div>
       <div className="ct_admin_logo">
-        <img  loading="lazy" src="https://app.flexsirent.com/admin/assets/img/logo.svg" alt="" />
+        <img  loading="lazy" src="assets/img/logo.svg" alt="" />
       </div>
       <ul ref={scrollRef}>
         {sidemenu?.map((item) => (

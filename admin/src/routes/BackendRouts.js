@@ -1,6 +1,7 @@
 // Base API & Socket URL from Environment Variables:
-export const BASE_URL = process.env.REACT_APP_API_BASE_URL || "https://app.flexsirent.com/api/";
-export const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || BASE_URL.replace(/\/api\/?$/, "");
+export const BASE_URL = process.env.REACT_APP_API_BASE_URL || "";
+export const SOCKET_URL =
+  process.env.REACT_APP_SOCKET_URL || (BASE_URL ? BASE_URL.replace(/\/api\/?$/, "") : "");
 
 export const loginAPI = "admin/login";
 export const getMyProfileAPI = "admin/fetch-profile";

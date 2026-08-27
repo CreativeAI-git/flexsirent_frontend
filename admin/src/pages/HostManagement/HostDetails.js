@@ -44,7 +44,7 @@ const HostDetails = () => {
               <ImageWithPreview
                 image={
                   hostDetail?.profile_image ||
-                  "https://app.flexsirent.com/user_profile.png"
+                  "assets/img/user.png"
                 }
                 className="ct_img_w_90"
               />

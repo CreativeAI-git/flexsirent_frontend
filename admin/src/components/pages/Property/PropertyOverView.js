@@ -62,7 +62,7 @@ const   PropertyOverView = ({ data = {} }) => {
             <li>
               <img
                 loading="lazy"
-                src="https://app.flexsirent.com/assets/img/dashbaord-images/lsicon_building-outline.svg"
+                src="assets/img/lsicon_building-outline.svg"
                 alt=""
                 className="me-1"
               />
@@ -72,7 +72,7 @@ const   PropertyOverView = ({ data = {} }) => {
             <li className="mt-3">
               <img
                 loading="lazy"
-                src="https://app.flexsirent.com/assets/img/dashbaord-images/ep_location.svg"
+                src="assets/img/ep_location.svg"
                 alt=""
                 className="me-1"
               />
@@ -81,7 +81,7 @@ const   PropertyOverView = ({ data = {} }) => {
             <li className="mt-3">
               <img
                 loading="lazy"
-                src="https://app.flexsirent.com/assets/img/dashbaord-images/lets-icons_calendar-light.svg"
+                src="assets/img/lets-icons_calendar-light.svg"
                 alt=""
                 className="me-1"
               />
@@ -186,7 +186,7 @@ const   PropertyOverView = ({ data = {} }) => {
                     <li key={index}>
                       <img
                         loading="lazy"
-                        src={`https://app.flexsirent.com/assets/img/${getAmenityIcon(
+                        src={`assets/img/${getAmenityIcon(
                           item?.title,
                         )}`}
                         alt={""}
@@ -205,7 +205,7 @@ const   PropertyOverView = ({ data = {} }) => {
                     <li key={index}>
                       <img
                         loading="lazy"
-                        src={`https://app.flexsirent.com/assets/img/${getSaftyAmenityIcon(
+                        src={`assets/img/${getSaftyAmenityIcon(
                           item?.title,
                         )}`}
                         alt={""}
@@ -226,7 +226,7 @@ const   PropertyOverView = ({ data = {} }) => {
                     <img
                       loading="lazy"
                       className="ct_icon_w_25"
-                      src={`https://app.flexsirent.com/assets/img/dashbaord-images/${getOtherIcon(
+                      src={`assets/img/${getOtherIcon(
                         data?.category_name,
                       )}`}
                       alt=""
@@ -241,7 +241,7 @@ const   PropertyOverView = ({ data = {} }) => {
                     <img
                       loading="lazy"
                       className="ct_icon_w_25"
-                      src={`https://app.flexsirent.com/assets/img/dashbaord-images/${getOtherIcon(
+                      src={`assets/img/${getOtherIcon(
                         "floor",
                       )}`}
                       alt=""
@@ -258,7 +258,7 @@ const   PropertyOverView = ({ data = {} }) => {
                       <img
                         loading="lazy"
                         className="ct_icon_w_25"
-                        src={`https://app.flexsirent.com/assets/img/dashbaord-images/${getOtherIcon(
+                        src={`assets/img/${getOtherIcon(
                           item?.title,
                         )}`}
                         alt=""
@@ -272,7 +272,7 @@ const   PropertyOverView = ({ data = {} }) => {
                 <span className="ct_light_grey_badge">
                   <img
                     loading="lazy"
-                    src="https://app.flexsirent.com/assets/img/dashbaord-images/cil_room.svg"
+                    src="assets/img/cil_room.svg"
                     alt=""
                   />
                   {`${data?.bedrooms || 0} Badroom${data?.bedrooms > 1 && "s"}`}
@@ -282,7 +282,7 @@ const   PropertyOverView = ({ data = {} }) => {
                 <span className="ct_light_grey_badge">
                   <img
                     loading="lazy"
-                    src="https://app.flexsirent.com/assets/img/dashbaord-images/iconoir_bathroom.svg"
+                    src="assets/img/iconoir_bathroom.svg"
                     alt=""
                   />
                   {`${data?.bathrooms || 0} Bathroom${
@@ -294,7 +294,7 @@ const   PropertyOverView = ({ data = {} }) => {
                 <span className="ct_light_grey_badge">
                   <img
                     loading="lazy"
-                    src="https://app.flexsirent.com/assets/img/dashbaord-images/mingcute_bed-line.svg"
+                    src="assets/img/mingcute_bed-line.svg"
                     alt=""
                   />
                   {`${data?.beds || 0} Bed${data?.beds > 1 && "s"}`}
@@ -304,7 +304,7 @@ const   PropertyOverView = ({ data = {} }) => {
                 <span className="ct_light_grey_badge">
                   <img
                     loading="lazy"
-                    src="https://app.flexsirent.com/assets/img/dashbaord-images/bx_area.svg"
+                    src="assets/img/bx_area.svg"
                     alt=""
                   />
                   {data?.square_foot || 0} sqft
@@ -324,7 +324,7 @@ const   PropertyOverView = ({ data = {} }) => {
                       <div className="ct_light_grey_miduam ct_w_100_1199">
                         <img
                           loading="lazy"
-                          src="https://app.flexsirent.com/assets/img/dashbaord-images/lets-icons_calendar-light.svg"
+                          src="assets/img/lets-icons_calendar-light.svg"
                           alt=""
                         />
                         <div>
@@ -338,7 +338,7 @@ const   PropertyOverView = ({ data = {} }) => {
                     <div className="ct_light_grey_miduam ct_w_100_1199">
                       <img
                         loading="lazy"
-                        src="https://app.flexsirent.com/assets/img/dashbaord-images/clock_icon.svg"
+                        src="assets/img/clock_icon.svg"
                         alt=""
                       />
                       {data?.min_stay_duration && (
@@ -363,7 +363,7 @@ const   PropertyOverView = ({ data = {} }) => {
                       <div className="ct_light_grey_miduam ct_w_100_1199">
                         <img
                           loading="lazy"
-                          src="https://app.flexsirent.com/assets/img/dashbaord-images/clock_icon.svg"
+                          src="assets/img/clock_icon.svg"
                           alt=""
                         />
                         <div>
@@ -378,7 +378,7 @@ const   PropertyOverView = ({ data = {} }) => {
                       <div className="ct_light_grey_miduam ct_w_100_1199">
                         <img
                           loading="lazy"
-                          src="https://app.flexsirent.com/assets/img/dashbaord-images/clock_icon.svg"
+                          src="assets/img/clock_icon.svg"
                           alt=""
                         />
                         <div>
@@ -405,7 +405,7 @@ const   PropertyOverView = ({ data = {} }) => {
                         <img
                           loading="lazy"
                           //       className="ct_icon_w_25"
-                          src={`https://app.flexsirent.com/assets/img/${getHouseRulesIcon(
+                          src={`assets/img/${getHouseRulesIcon(
                             item?.title,
                           )}`}
                           alt=""

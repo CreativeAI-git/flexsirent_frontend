@@ -3,7 +3,7 @@ import ImagePreview from ".";
 
 const ImageWithPreview = ({
   image,
-  fallback = "https://app.flexsirent.com/admin/assets/img/user.png",
+  fallback = "assets/img/user.png",
   className = "ct_img_60",
   isPreview = true
 }) => {
