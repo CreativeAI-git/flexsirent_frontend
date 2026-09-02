@@ -42,7 +42,7 @@ export const AIChatProvider = ({ children }) => {
     if (typeof window !== "undefined") {
       let id = localStorage.getItem("ai_session_id") || sessionStorage.getItem("ai_session_id");
       if (!id || !id.startsWith("web:")) {
-        id = `web:${generateUUID()}`;
+        id = `web:${generateUUID()}`; 
       }
       localStorage.setItem("ai_session_id", id);
       sessionStorage.setItem("ai_session_id", id);
@@ -253,7 +253,7 @@ export const AIChatProvider = ({ children }) => {
         unit_type: null
       });
 
-      // Keep hasSearched as true so the floating chat stays open
+      // Keep hasSearched as true so the chat stays open with fresh messages
       setHasSearched(true);
       sessionStorage.setItem("ai_has_searched", "true");
 

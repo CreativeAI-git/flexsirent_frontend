@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 import axios from "axios";
 import { BASE_URL, seoBySlugAPI } from "../routes/apiURLs";
 import WebFooter from "../layout/WebFooter";
+import { useAIChat } from "../context/AIChatContext";
 
 export async function loader() {
   try {
@@ -82,18 +83,23 @@ export function meta({ data, params }) {
 }
 
 const Home = () => {
+  const { hasSearched } = useAIChat();
+
   return (
     <>
       <style dangerouslySetInnerHTML={{
         __html: `
         @media (min-width: 768px) {
           html, body {
-            height: 100%;
+            height: ${hasSearched ? "auto !important" : "100%"};
+            min-height: 100%;
             margin: 0;
-
+            overflow-x: hidden;
+            ${!hasSearched ? "overflow-y: hidden;" : "overflow-y: auto !important;"}
           }
           #root, .App {
-            height: 100%;
+            height: ${hasSearched ? "auto !important" : "100%"};
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
           }
@@ -104,16 +110,20 @@ const Home = () => {
             flex: 1;
             display: flex;
             align-items: center;
+            justify-content: center;
             min-height: 0 !important;
-            padding-block: 0 !important;
+            padding-bottom: ${hasSearched ? "80px !important" : "0 !important"};
+            background-size: cover;
+            background-position: center bottom;
           }
+          ${!hasSearched ? ".web-footer { display: none; }" : ".web-footer { display: block; flex-shrink: 0; }"}
         }
       `}} />
       {/* Header Section S */}
       <WebHeader />
       {/* Banner Section S */}
       <Banner />
-      <WebFooter/>
+      <WebFooter />
     </>
   );
 };
