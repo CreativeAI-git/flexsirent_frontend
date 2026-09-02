@@ -1,5 +1,6 @@
 import "./i18n";
 import "./index.css";
+import "react-phone-number-input/style.css";
 import App from "./App";
 import React from "react";
 import { store } from "./redux/store";

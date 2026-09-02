@@ -11,10 +11,10 @@ export function Layout({ children }) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <link rel="icon" href="https://app.flexsirent.com/assets/img/fav_icon.svg" />
+        <link rel="icon" href="/assets/img/fav_icon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <link rel="apple-touch-icon" href="https://app.flexsirent.com/admin/assets/img/fav_icon.svg" />
+        <link rel="apple-touch-icon" href="/assets/img/fav_icon.svg" />
         <link rel="manifest" href="/manifest.json" />
 
         {/* Style Sheets */}

@@ -1,20 +1,16 @@
 import axios from "axios";
 
-// Integration Configuration
+// Integration Configuration - queries local SSR proxy instead of external API directly
 const AI_CONFIG = {
-  url: import.meta.env.VITE_AI_URL || (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
-    ? "/api-gateway"
-    : "https://api.flexsirent.com"),
-  token: import.meta.env.VITE_AI_TOKEN
+  url: "/api/ai/search"
 };
 
 /**
  * Production-ready handler for AI search queries.
- * Calls /search/turn endpoint on staging environment.
+ * Calls /search/turn endpoint via secure server proxy.
  */
 export async function fetchAiDiscovery(intent, locale = "en", sessionId = "flexsi-session", messageText = null, signal = null) {
   const targetUrl = AI_CONFIG.url;
-  const token = AI_CONFIG.token;
 
   // Normalize locale to BCP-47 format (e.g. 'en' -> 'en-US', 'es' -> 'es-ES')
   const bcp47Locale = locale.toLowerCase().startsWith("es") ? "es-ES" : "en-US";
@@ -36,15 +32,14 @@ export async function fetchAiDiscovery(intent, locale = "en", sessionId = "flexs
     }                                                                                                                                                                                                                                        
   };
 
-  console.log(`[AI SERVICE] Posting to endpoint: ${targetUrl}/search/turn`, payload);
+  console.log(`[AI SERVICE] Posting to local proxy: ${targetUrl}`, payload);
   try {
     const response = await axios.post(
-      `${targetUrl}/search/turn`,
+      targetUrl,
       payload,
       {
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          "Content-Type": "application/json"
         },
         ...(signal && { signal })
       }
@@ -59,7 +54,7 @@ export async function fetchAiDiscovery(intent, locale = "en", sessionId = "flexs
 
     return data;
   } catch (error) {
-    console.error("[AI SERVICE] Failed to fetch staging AI Discovery results:", error);
+    console.error("[AI SERVICE] Failed to fetch proxy AI Discovery results:", error);
     throw error;
   }
 }
@@ -70,7 +65,6 @@ export async function fetchAiDiscovery(intent, locale = "en", sessionId = "flexs
  */
 export async function fetchSearchTurn(messageText, sessionId, locale = "en", signal = null, listingId = null, intent = {}) {
   const targetUrl = AI_CONFIG.url;
-  const token = AI_CONFIG.token;
 
   // Normalize locale to BCP-47 format
   const bcp47Locale = locale.toLowerCase().startsWith("es") ? "es-ES" : "en-US";
@@ -87,15 +81,14 @@ export async function fetchSearchTurn(messageText, sessionId, locale = "en", sig
     payload.listing_id = listingId;
   }
 
-  console.log(`[AI SERVICE] Posting search turn to: ${targetUrl}/search/turn`, payload);
+  console.log(`[AI SERVICE] Posting search turn to proxy: ${targetUrl}`, payload);
   try {
     const response = await axios.post(
-      `${targetUrl}/search/turn`,
+      targetUrl,
       payload,
       {
         headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          "Content-Type": "application/json"
         },
         ...(signal && { signal })
       }
@@ -110,7 +103,7 @@ export async function fetchSearchTurn(messageText, sessionId, locale = "en", sig
 
     return data;
   } catch (error) {
-    console.error("[AI SERVICE] Failed in fetchSearchTurn:", error);
+    console.error("[AI SERVICE] Failed in fetchSearchTurn via proxy:", error);
     throw error;
   }
 }

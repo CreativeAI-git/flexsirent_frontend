@@ -103,13 +103,51 @@ export function meta({ data, params }) {
   const title = seo?.meta_title || "Properties | Flexsirent";
   const description = seo?.meta_description || "Explore flexible rental properties including apartments, rooms, and flats on Flexsirent.";
 
+  const propertyList = data?.properties || [];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "numberOfItems": propertyList.length,
+    "itemListElement": propertyList.slice(0, 10).map((item, idx) => {
+      const propId = item.property_id || item.id;
+      const imageUrl = item.propertyImage?.length ? item.propertyImage[0].image : "";
+      return {
+        "@type": "ListItem",
+        "position": idx + 1,
+        "item": {
+          "@type": "Accommodation",
+          "name": item.property_title || "Rental Property",
+          "url": `${canonicalBase}/${lang}/l/${propId}`,
+          "image": imageUrl || undefined,
+          "description": item.property_description || undefined,
+          "address": item.address ? {
+            "@type": "PostalAddress",
+            "addressLocality": item.address // Masked or public address string
+          } : undefined,
+          "offers": {
+            "@type": "Offer",
+            "price": item.monthly_rent ? (item.monthly_rent - (item.monthly_rent * (item.offer_value || 0)) / 100) : undefined,
+            "priceCurrency": "EUR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": item.monthly_rent || undefined,
+              "priceCurrency": "EUR",
+              "unitCode": "MON"
+            }
+          }
+        }
+      };
+    })
+  };
+
   return [
     { title },
     { name: "description", content: description },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:url", content: url },
-    { tagName: "link", rel: "canonical", href: url }
+    { tagName: "link", rel: "canonical", href: url },
+    { "script:ld+json": structuredData }
   ];
 }
 

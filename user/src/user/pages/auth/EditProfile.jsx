@@ -14,6 +14,7 @@ import { updateUserProfileData } from "../../../redux/features/user/actions/auth
 import ImageWithPreview from "../../../shared/components/image preview/imageWithPreview";
 
 import PhoneInput from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
 
 const EditProfile = () => {
   const navigate = useLocalizedNavigate();
@@ -194,6 +195,7 @@ const EditProfile = () => {
                             {t("profile.phoneNumber")}
                           </label>
                           <PhoneInput
+                            flags={flags}
                             international
                             defaultCountry="ES"
                             className="ct_phone_input"

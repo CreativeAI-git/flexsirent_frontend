@@ -12,6 +12,7 @@ import { updateHostProfileData } from "../../../redux/features/host/actions/auth
 import ImageWithPreview from "../../../shared/components/image preview/imageWithPreview";
 
 import PhoneInput from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
 
 const UpdateProfile = () => {
   const navigate = useLocalizedNavigate();
@@ -193,6 +194,7 @@ const UpdateProfile = () => {
                             Phone Number
                           </label>
                           <PhoneInput
+                            flags={flags}
                             international
                             defaultCountry="ES"
                             className="ct_phone_input"

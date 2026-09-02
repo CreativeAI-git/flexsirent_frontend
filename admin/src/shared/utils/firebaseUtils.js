@@ -97,7 +97,7 @@ const getNotificationContent = (payload = {}) => {
     title: notification.title || data.title || "FlexsiRent",
     options: {
       body: notification.body || data.body || "You have a new message.",
-      icon: notification.icon || data.icon || "https://app.flexsirent.com/admin/assets/img/fav_icon.svg",
+      icon: notification.icon || data.icon || "assets/img/fav_icon.svg",
       image: notification.image || data.image,
       data,
     },

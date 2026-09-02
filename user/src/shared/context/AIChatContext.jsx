@@ -42,7 +42,7 @@ export const AIChatProvider = ({ children }) => {
     if (typeof window !== "undefined") {
       let id = localStorage.getItem("ai_session_id") || sessionStorage.getItem("ai_session_id");
       if (!id || !id.startsWith("web:")) {
-        id = `web:${generateUUID()}`;
+        id = `web:${generateUUID()}`; 
       }
       localStorage.setItem("ai_session_id", id);
       sessionStorage.setItem("ai_session_id", id);
@@ -51,13 +51,16 @@ export const AIChatProvider = ({ children }) => {
     return `web:flexsi-session`;
   });
 
-  // Keep track if user made a first search
+  // Keep track if user made a first search (only using sessionStorage so it resets on page reload)
   const [hasSearched, setHasSearched] = useState(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("ai_has_searched") === "true") || (sessionStorage.getItem("ai_has_searched") === "true");
+      return sessionStorage.getItem("ai_has_searched") === "true";
     }
     return false;
   });
+
+  // Track if more results are available from the AI search turn API
+  const [moreAvailable, setMoreAvailable] = useState(true);
 
   // Minimize state of floating chat
   const [isMinimized, setIsMinimized] = useState(() => {
@@ -87,6 +90,21 @@ export const AIChatProvider = ({ children }) => {
       if (!userText.trim()) {
         return {
           content: []
+        };
+      }
+
+      // Intercept "more options" query if no more are available
+      const isMoreOptionsQuery = /^(more\s*options|more|show\s*more|mas\s*opciones|más\s*opciones|ver\s*mas|ver\s*más)$/i.test(userText.trim());
+      if (isMoreOptionsQuery && !moreAvailable) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: locale === "es"
+                ? "No hay más opciones disponibles para esta búsqueda. Te sugerimos ajustar tus criterios de búsqueda."
+                : "There are no further options for this search. We suggest adjusting your search criteria instead."
+            }
+          ]
         };
       }
 
@@ -165,6 +183,9 @@ export const AIChatProvider = ({ children }) => {
           };
           responseData.intent = finalIntent;
           setAccumulatedIntent(finalIntent);
+          
+          // Set moreAvailable status!
+          setMoreAvailable(responseData.more_available !== false);
         }
 
         return {
@@ -205,7 +226,6 @@ export const AIChatProvider = ({ children }) => {
   const triggerFirstSearch = (queryText) => {
     if (!queryText || !queryText.trim()) return;
     setHasSearched(true);
-    localStorage.setItem("ai_has_searched", "true");
     sessionStorage.setItem("ai_has_searched", "true");
     setIsMinimized(false);
     localStorage.setItem("ai_chat_minimized", "false");
@@ -233,14 +253,15 @@ export const AIChatProvider = ({ children }) => {
         unit_type: null
       });
 
-      // Keep hasSearched as true so the floating chat stays open
+      // Keep hasSearched as true so the chat stays open with fresh messages
       setHasSearched(true);
-      localStorage.setItem("ai_has_searched", "true");
       sessionStorage.setItem("ai_has_searched", "true");
 
       setIsMinimized(false);
       localStorage.setItem("ai_chat_minimized", "false");
       sessionStorage.setItem("ai_chat_minimized", "false");
+
+      setMoreAvailable(true);
     }
   };
 
@@ -250,6 +271,7 @@ export const AIChatProvider = ({ children }) => {
         sessionId,
         hasSearched,
         isMinimized,
+        moreAvailable,
         runtime,
         toggleMinimize,
         triggerFirstSearch,

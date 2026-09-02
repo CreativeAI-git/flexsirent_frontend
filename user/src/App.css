@@ -1421,6 +1421,13 @@ button:focus {
   border: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.PhoneInput .PhoneInputCountryIcon svg {
+  display: block !important;
+  margin-top: -2px !important;
 }
 
 .ct_phon_input_35 .PhoneInput {
@@ -1843,6 +1850,8 @@ html {
   .ct_flex_col_reverse {
     flex-direction: column-reverse !important;
   }
+}
 
-  
+.ct_panel_bottom_clearance {
+  padding-bottom: 80px !important;
 }

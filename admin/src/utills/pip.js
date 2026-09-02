@@ -1,7 +1,7 @@
 import moment from "moment";
 // Currency Symbol
 export const curSym = "€";
-export const WebURL = process.env.REACT_APP_WEB_URL || "https://app.flexsirent.com/profile/";
+export const WebURL = process.env.REACT_APP_WEB_URL || "";
 
 // Date View Format
 export const pipViewDate = (date) => {
@@ -24,37 +24,37 @@ export const getSubstring = (str, len = "15", appendStr = "...") => {
 export const rentData = [
   {
     title: "APARTMENTS",
-    img: "https://app.flexsirent.com/admin/assets/img/home/rent_1.jpg",
+    img: "assets/img/home/rent_1.jpg",
     description:
       "Discover beautifully curated rental apartments across Europe’s top cities — designed for every lifestyle,taste, and budget",
   },
   {
     title: "ROOMS",
-    img: "https://app.flexsirent.com/admin/assets/img/home/rent_2.png",
+    img: "assets/img/home/rent_2.png",
     description:
       "Explore flexible and stylish living spaces throughout Europe — from cozy studios to spacious homes, all in prime locations",
   },
   {
     title: "APARTMENTS",
-    img: "https://app.flexsirent.com/admin/assets/img/home/rent_1.jpg",
+    img: "assets/img/home/rent_1.jpg",
     description:
       "Discover beautifully curated rental apartments across Europe’s top cities — designed for every lifestyle,taste, and budget",
   },
   {
     title: "ROOMS",
-    img: "https://app.flexsirent.com/admin/assets/img/home/rent_2.png",
+    img: "assets/img/home/rent_2.png",
     description:
       "Explore flexible and stylish living spaces throughout Europe — from cozy studios to spacious homes, all in prime locations",
   },
   {
     title: "APARTMENTS",
-    img: "https://app.flexsirent.com/admin/assets/img/home/rent_1.jpg",
+    img: "assets/img/home/rent_1.jpg",
     description:
       "Discover beautifully curated rental apartments across Europe’s top cities — designed for every lifestyle,taste, and budget",
   },
   {
     title: "ROOMS",
-    img: "https://app.flexsirent.com/admin/assets/img/home/rent_2.png",
+    img: "assets/img/home/rent_2.png",
     description:
       "Explore flexible and stylish living spaces throughout Europe — from cozy studios to spacious homes, all in prime locations",
   },
@@ -63,22 +63,22 @@ export const rentData = [
 export const apartmentData = [
   {
     id: 1,
-    img: "https://app.flexsirent.com/admin/assets/img/house_rent.png",
+    img: "assets/img/house_rent.png",
     title: "One-bedroom apartment",
     location: "One-bedroom apartment",
     rating: 5,
     isVerified: true,
     features: [
       {
-        icon: "https://app.flexsirent.com/admin/assets/img/weui_location-outlined.svg",
+        icon: "assets/img/weui_location-outlined.svg",
         label: "Wi fi",
       },
       {
-        icon: "https://app.flexsirent.com/admin/assets/img/thunder_icon.png",
+        icon: "assets/img/thunder_icon.png",
         label: "Bills Included",
       },
       {
-        icon: "https://app.flexsirent.com/admin/assets/img/wokspace_icon.png",
+        icon: "assets/img/wokspace_icon.png",
         label: "Workspace",
       },
     ],
@@ -87,22 +87,22 @@ export const apartmentData = [
   },
   {
     id: 1,
-    img: "https://app.flexsirent.com/admin/assets/img/house_rent.png",
+    img: "assets/img/house_rent.png",
     title: "One-bedroom apartment",
     location: "One-bedroom apartment",
     rating: 5,
     isVerified: true,
     features: [
       {
-        icon: "https://app.flexsirent.com/admin/assets/img/weui_location-outlined.svg",
+        icon: "assets/img/weui_location-outlined.svg",
         label: "Wi fi",
       },
       {
-        icon: "https://app.flexsirent.com/admin/assets/img/thunder_icon.png",
+        icon: "assets/img/thunder_icon.png",
         label: "Bills Included",
       },
       {
-        icon: "https://app.flexsirent.com/admin/assets/img/wokspace_icon.png",
+        icon: "assets/img/wokspace_icon.png",
         label: "Workspace",
       },
     ],
@@ -111,22 +111,22 @@ export const apartmentData = [
   },
   // {
   //   id: 1,
-  //   img: "https://app.flexsirent.com/admin/assets/img/house_rent.png",
+  //   img: "assets/img/house_rent.png",
   //   title: "One-bedroom apartment",
   //   location: "One-bedroom apartment",
   //   rating: 5,
   //   isVerified: true,
   //   features: [
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/weui_location-outlined.svg",
+  //       icon: "assets/img/weui_location-outlined.svg",
   //       label: "Wi fi",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/thunder_icon.png",
+  //       icon: "assets/img/thunder_icon.png",
   //       label: "Bills Included",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/wokspace_icon.png",
+  //       icon: "assets/img/wokspace_icon.png",
   //       label: "Workspace",
   //     },
   //   ],
@@ -135,22 +135,22 @@ export const apartmentData = [
   // },
   // {
   //   id: 1,
-  //   img: "https://app.flexsirent.com/admin/assets/img/house_rent.png",
+  //   img: "assets/img/house_rent.png",
   //   title: "One-bedroom apartment",
   //   location: "One-bedroom apartment",
   //   rating: 5,
   //   isVerified: true,
   //   features: [
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/weui_location-outlined.svg",
+  //       icon: "assets/img/weui_location-outlined.svg",
   //       label: "Wi fi",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/thunder_icon.png",
+  //       icon: "assets/img/thunder_icon.png",
   //       label: "Bills Included",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/wokspace_icon.png",
+  //       icon: "assets/img/wokspace_icon.png",
   //       label: "Workspace",
   //     },
   //   ],
@@ -159,22 +159,22 @@ export const apartmentData = [
   // },
   // {
   //   id: 1,
-  //   img: "https://app.flexsirent.com/admin/assets/img/house_rent.png",
+  //   img: "assets/img/house_rent.png",
   //   title: "One-bedroom apartment",
   //   location: "One-bedroom apartment",
   //   rating: 5,
   //   isVerified: true,
   //   features: [
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/weui_location-outlined.svg",
+  //       icon: "assets/img/weui_location-outlined.svg",
   //       label: "Wi fi",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/thunder_icon.png",
+  //       icon: "assets/img/thunder_icon.png",
   //       label: "Bills Included",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/wokspace_icon.png",
+  //       icon: "assets/img/wokspace_icon.png",
   //       label: "Workspace",
   //     },
   //   ],
@@ -183,22 +183,22 @@ export const apartmentData = [
   // },
   // {
   //   id: 1,
-  //   img: "https://app.flexsirent.com/admin/assets/img/house_rent.png",
+  //   img: "assets/img/house_rent.png",
   //   title: "One-bedroom apartment",
   //   location: "One-bedroom apartment",
   //   rating: 5,
   //   isVerified: true,
   //   features: [
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/weui_location-outlined.svg",
+  //       icon: "assets/img/weui_location-outlined.svg",
   //       label: "Wi fi",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/thunder_icon.png",
+  //       icon: "assets/img/thunder_icon.png",
   //       label: "Bills Included",
   //     },
   //     {
-  //       icon: "https://app.flexsirent.com/admin/assets/img/wokspace_icon.png",
+  //       icon: "assets/img/wokspace_icon.png",
   //       label: "Workspace",
   //     },
   //   ],
@@ -213,37 +213,37 @@ export const testimonialData = [
     id: 1,
     name: "Hattie Bradley",
     role: "Happy User",
-    image: "https://app.flexsirent.com/admin/assets/img/home/client_1.jpg",
+    image: "assets/img/home/client_1.jpg",
     quote:
       "My first time using the platform was a breeze – really polished and user friendly. One of their team even got in touch to guide me through the necessary steps. I highly recommend them!",
-    quoteIcon: "https://app.flexsirent.com/admin/assets/img/quote.png",
+    quoteIcon: "assets/img/quote.png",
   },
   {
     id: 2,
     name: "Luise Aymar",
     role: "Happy User",
-    image: "https://app.flexsirent.com/admin/assets/img/home/client_2.jpg",
+    image: "assets/img/home/client_2.jpg",
     quote:
       "My first time using the platform was a breeze – really polished and user friendly. One of their team even got in touch to guide me through the necessary steps. I highly recommend them!",
-    quoteIcon: "https://app.flexsirent.com/admin/assets/img/quote.png",
+    quoteIcon: "assets/img/quote.png",
   },
   {
     id: 1,
     name: "Hattie Bradley",
     role: "Happy User",
-    image: "https://app.flexsirent.com/admin/assets/img/home/client_1.jpg",
+    image: "assets/img/home/client_1.jpg",
     quote:
       "My first time using the platform was a breeze – really polished and user friendly. One of their team even got in touch to guide me through the necessary steps. I highly recommend them!",
-    quoteIcon: "https://app.flexsirent.com/admin/assets/img/quote.png",
+    quoteIcon: "assets/img/quote.png",
   },
   {
     id: 2,
     name: "Luise Aymar",
     role: "Happy User",
-    image: "https://app.flexsirent.com/admin/assets/img/home/client_2.jpg",
+    image: "assets/img/home/client_2.jpg",
     quote:
       "My first time using the platform was a breeze – really polished and user friendly. One of their team even got in touch to guide me through the necessary steps. I highly recommend them!",
-    quoteIcon: "https://app.flexsirent.com/admin/assets/img/quote.png",
+    quoteIcon: "assets/img/quote.png",
   },
   // Add more testimonials as needed
 ];

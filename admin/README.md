@@ -28,13 +28,13 @@ Create a `.env` file in the root of the admin directory (`flexsi_rent_frontend/a
 
 ```env
 # Backend API Base URL
-REACT_APP_API_BASE_URL=https://app.flexsirent.com/api/
+REACT_APP_API_BASE_URL=https://backend.flexsirent.com/api/
 
 # Real-time WebSocket Server URL
-REACT_APP_SOCKET_URL=https://app.flexsirent.com
+REACT_APP_SOCKET_URL=https://backend.flexsirent.com
 
 # Web Profile Redirection URL
-REACT_APP_WEB_URL=https://app.flexsirent.com/profile/
+REACT_APP_WEB_URL=https://flexsirent.com/profile/
 
 # Base Public Path
 PUBLIC_URL=/admin
@@ -71,7 +71,7 @@ PUBLIC_URL=/admin
    ```nginx
    server {
        listen 80;
-       server_name app.flexsirent.com;
+       server_name admin.flexsirent.com;
 
        location /admin {
            alias /var/www/flexsi_rent_frontend/admin/build;

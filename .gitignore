@@ -6,4 +6,4 @@ node_modules
 .git
 .env.local
 .react-router
-/dist
+dist

@@ -17,6 +17,7 @@ import {
 } from "../../../redux/features/user/actions/bookingAction";
 
 import PhoneInput from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
 import Loader from "../../components/loader";
 
 const BookProperty = () => {
@@ -383,6 +384,7 @@ const BookProperty = () => {
                                       value={values["phone_number"]}
                                     /> */}
                                     <PhoneInput
+                                      flags={flags}
                                       international
                                       defaultCountry="ES"
                                       className="ct_phone_input"

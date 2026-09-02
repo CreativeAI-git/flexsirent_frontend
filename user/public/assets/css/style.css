@@ -4182,7 +4182,16 @@ ul#ct_bhk_drop {
 }
 
 .ct_banner_desc {
-  padding-bottom: 80px;
+  padding-bottom: 75px;
+}
+
+.ct_banner_bg.et_pt_80 {
+  padding-top: 50px !important;
+  padding-bottom: 30px !important;
+}
+
+.et_pb_40 {
+  padding-bottom: 40px !important;
 }
 
 .bg-no-repeat {

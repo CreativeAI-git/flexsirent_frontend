@@ -1,24 +1,21 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocation, useParams } from "react-router";
 import { useAuiState } from "@assistant-ui/react";
 import { useAIChat } from "../shared/context/AIChatContext";
 import { useLocalizedNavigate } from "../shared/hooks/useLocalizedNavigate";
 import { useTranslation } from "react-i18next";
-
-// Modular Component Imports
-import NeedInfoComponent from "./chat/NeedInfoComponent";
-import Show3Component from "./chat/Show3Component";
-import ShowMore3Component from "./chat/ShowMore3Component";
-import NoStockComponent from "./chat/NoStockComponent";
-import FallbackComponent from "./chat/FallbackComponent";
-import ListingAnswerComponent from "./chat/ListingAnswerComponent";
+import ChatMessagesView from "./chat/ChatMessagesView";
 
 export default function FloatingChat() {
   const { t } = useTranslation();
   const navigate = useLocalizedNavigate();
+  const location = useLocation();
+  const { lang } = useParams();
   const {
     sessionId,
     hasSearched,
     isMinimized,
+    moreAvailable,
     runtime,
     toggleMinimize,
     resetChat,
@@ -34,16 +31,27 @@ export default function FloatingChat() {
   const chatBodyRef = useRef(null);
   const textareaRef = useRef(null);
 
+  // Set base bottom offset to 24px universally across all pages
+  const baseOffset = 24;
+
   // Dynamic bottom positioning to prevent footer overlap
-  const [footerOverlapOffset, setFooterOverlapOffset] = useState(24);
+  const [footerOverlapOffset, setFooterOverlapOffset] = useState(baseOffset);
+
+  // Check if current route is the homepage
+  const pathname = location.pathname.replace(/\/+$/, "");
+  const isHomePage =
+    pathname === "" ||
+    pathname === "/" ||
+    pathname === `/${lang}` ||
+    /^\/[a-z]{2}$/.test(pathname);
 
   useEffect(() => {
-    if (!hasSearched || isMinimized) return;
+    if (!hasSearched || isHomePage) return;
 
     const handleScroll = () => {
-      const footer = document.querySelector("footer");
+      const footer = document.querySelector("footer, .site-footer, .web-footer");
       if (!footer) {
-        setFooterOverlapOffset(24);
+        setFooterOverlapOffset(baseOffset);
         return;
       }
 
@@ -52,9 +60,9 @@ export default function FloatingChat() {
 
       if (footerRect.top < viewportHeight) {
         const visibleFooterHeight = viewportHeight - footerRect.top;
-        setFooterOverlapOffset(visibleFooterHeight + 24);
+        setFooterOverlapOffset(visibleFooterHeight + baseOffset);
       } else {
-        setFooterOverlapOffset(24);
+        setFooterOverlapOffset(baseOffset);
       }
     };
 
@@ -66,7 +74,7 @@ export default function FloatingChat() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [hasSearched, isMinimized]);
+  }, [hasSearched, isMinimized, isHomePage]);
 
   // Auto-scroll chat body to bottom when messages list changes or loading state changes
   useEffect(() => {
@@ -78,7 +86,8 @@ export default function FloatingChat() {
     }
   }, [messages, isRunning]);
 
-  if (!hasSearched) return null;
+  // If on homepage or user has not searched yet, do not render floating widget
+  if (isHomePage || !hasSearched) return null;
 
   const isEs = locale.startsWith("es");
 
@@ -96,7 +105,7 @@ export default function FloatingChat() {
   };
 
   // Helper to send text programmatically (e.g. from suggestion chips)
-  const sendProgrammaticMessage = (text, intent) => {
+  const handleProgrammaticMessage = (text, intent) => {
     if (isRunning) return;
     sendMessage(text, intent);
   };
@@ -113,14 +122,6 @@ export default function FloatingChat() {
       textarea.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
     }
   };
-
-  // Determine if the last assistant message is a NEED_INFO action
-  // to toggle composer visibility/disabled state
-  const lastMessage = messages[messages.length - 1];
-  const isLastMessageNeedInfo =
-    lastMessage?.role === "assistant" &&
-    lastMessage.content?.[0]?.type === "custom-payload" &&
-    lastMessage.content[0].data?.action === "NEED_INFO";
 
   return (
     <>
@@ -176,6 +177,7 @@ export default function FloatingChat() {
           align-items: center;
           justify-content: center;
           font-size: 16px;
+          flex-shrink: 0;
         }
         .floating-chat-header__title {
           font-weight: 700;
@@ -219,7 +221,6 @@ export default function FloatingChat() {
           padding: 20px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
         }
         .floating-chat-message-row {
           display: flex;
@@ -312,51 +313,13 @@ export default function FloatingChat() {
           font-weight: 700;
           font-size: 14px;
           z-index: 1050;
-          transition: transform 0.2s ease;
+          transition: transform 0.2s ease, bottom 0.3s ease;
         }
         .floating-chat-badge:hover {
           transform: translateY(-2px);
         }
         
         /* Custom UI Components styles */
-        .need-info-form {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          margin-top: 10px;
-          background: #fff8ee;
-          padding: 14px;
-          border-radius: 14px;
-          border: 1px dashed #FF7F00;
-        }
-        .need-info-form__label {
-          font-weight: 600;
-          font-size: 12px;
-          color: #7b7369;
-          margin: 0;
-          text-transform: uppercase;
-        }
-        .need-info-form__input {
-          border: 1px solid #efe6d8;
-          border-radius: 8px;
-          padding: 8px 10px;
-          font-size: 13px;
-          outline: none;
-        }
-        .need-info-form__input:focus {
-          border-color: #FF7F00;
-        }
-        .need-info-form__submit {
-          border: 0;
-          background-color: #FF7F00;
-          color: #ffffff;
-          padding: 8px 12px;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 13px;
-          cursor: pointer;
-        }
-        
         .chat-properties-scroll {
           display: flex;
           gap: 12px;
@@ -364,6 +327,11 @@ export default function FloatingChat() {
           padding-bottom: 8px;
           margin-top: 8px;
           scrollbar-width: thin;
+        }
+        .chat-properties-scroll::after {
+          content: "";
+          width: 12px;
+          flex-shrink: 0;
         }
         .chat-property-card {
           width: 220px;
@@ -380,7 +348,7 @@ export default function FloatingChat() {
         }
         .chat-property-card:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
         .chat-property-card__image-container {
           position: relative;
@@ -389,7 +357,7 @@ export default function FloatingChat() {
         }
         .chat-property-card__image {
           width: 100%;
-          height: 100%;
+          height: 120px;
           object-fit: cover;
         }
         .chat-property-card__badge {
@@ -408,7 +376,7 @@ export default function FloatingChat() {
           font-size: 11px;
         }
         .chat-property-card__content {
-          padding: 10px;
+          padding: 10px 12px;
           display: flex;
           flex-direction: column;
           gap: 4px;
@@ -458,23 +426,23 @@ export default function FloatingChat() {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
-          margin-top: 8px;
+          margin-top: 10px;
         }
         .chat-action-chip {
+          background: #ffffff;
           border: 1px solid #efe6d8;
-          background-color: #ffffff;
-          color: #FF7F00;
-          font-weight: 600;
-          border-radius: 99px;
+          color: #171717;
           padding: 6px 12px;
+          border-radius: 999px;
           font-size: 12px;
+          font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
         }
         .chat-action-chip:hover {
-          background-color: #FF7F00;
-          color: #ffffff;
+          background: #FF7F00;
           border-color: #FF7F00;
+          color: #ffffff;
         }
         
         .chat-fallback-alert {
@@ -508,7 +476,7 @@ export default function FloatingChat() {
       `}} />
 
       {isMinimized ? (
-        <div className="floating-chat-badge" onClick={toggleMinimize}>
+        <div className="floating-chat-badge" onClick={toggleMinimize} style={{ bottom: `${footerOverlapOffset}px` }}>
           <i className="fa-solid fa-robot"></i>
           <span>{isEs ? "Descubrimiento IA" : "AI Discovery"}</span>
         </div>
@@ -523,9 +491,7 @@ export default function FloatingChat() {
               <div>
                 <h4 className="floating-chat-header__title">FlexsiRent AI</h4>
                 <p className="floating-chat-header__status">
-                  {isLastMessageNeedInfo
-                    ? (isEs ? "Completando búsqueda" : "Completing search")
-                    : (isEs ? "Asistente de búsqueda" : "Search assistant")}
+                  {isEs ? "Asistente de búsqueda" : "Search assistant"}
                 </p>
               </div>
             </div>
@@ -549,168 +515,14 @@ export default function FloatingChat() {
 
           {/* Chat Body */}
           <div className="floating-chat-body" ref={chatBodyRef}>
-            {messages.length === 0 && (
-              <div className="floating-chat-message-row floating-chat-message-row--assistant">
-                <div
-                  className="floating-chat-header__avatar"
-                  style={{ width: "24px", height: "24px", fontSize: "10px" }}
-                >
-                  <i className="fa-solid fa-robot"></i>
-                </div>
-                <div className="floating-chat-message-bubble floating-chat-message-bubble--assistant">
-                  <span>
-                    {isEs
-                      ? "¡Hola! Soy tu asistente de FlexsiRent. Describe tu estancia (por ejemplo, la ciudad, fecha de entrada, duración y presupuesto) para empezar a buscar propiedades."
-                      : "Hello! I am your FlexsiRent AI assistant. Describe your stay (for example, city, move-in date, duration, and budget) to start finding properties."}
-                  </span>
-                </div>
-              </div>
-            )}
-            {messages.map((msg, idx) => {
-              const isUser = msg.role === "user";
-
-              // Check if the message has any renderable text or custom-payload
-              const hasRenderableContent = msg.content && msg.content.some(part => {
-                if (part.type === "text" && part.text && part.text.trim()) {
-                  return true;
-                }
-                if (part.type === "custom-payload" && part.data && part.data.action) {
-                  return true;
-                }
-                return false;
-              });
-
-              if (!hasRenderableContent) return null;
-
-              return (
-                <div
-                  key={msg.id || idx}
-                  className={`floating-chat-message-row ${isUser
-                      ? "floating-chat-message-row--user"
-                      : "floating-chat-message-row--assistant"
-                    }`}
-                >
-                  {!isUser && (
-                    <div
-                      className="floating-chat-header__avatar"
-                      style={{ width: "24px", height: "24px", fontSize: "10px" }}
-                    >
-                      <i className="fa-solid fa-robot"></i>
-                    </div>
-                  )}
-                  <div
-                    className={`floating-chat-message-bubble ${isUser
-                        ? "floating-chat-message-bubble--user"
-                        : "floating-chat-message-bubble--assistant"
-                      }`}
-                    style={{ width: msg.content.some(p => p.type === "custom-payload") ? "100%" : "auto" }}
-                  >
-                    {/* Render message contents */}
-                    {msg.content.map((part, pIdx) => {
-                      if (part.type === "text") {
-                        return <span key={pIdx}>{part.text}</span>;
-                      }
-
-                      if (part.type === "custom-payload") {
-                        const payload = part.data || {};
-                        const { action, intent, trident_results } = payload;
-
-                        if (action === "NEED_INFO") {
-                          return (
-                            <NeedInfoComponent
-                              key={pIdx}
-                              intent={intent}
-                              locale={locale}
-                              onSubmitAnswer={sendProgrammaticMessage}
-                            />
-                          );
-                        }
-
-                        if (action === "SHOW_3") {
-                          return (
-                            <Show3Component
-                              key={pIdx}
-                              tridentResults={trident_results}
-                              sessionId={sessionId}
-                              locale={locale}
-                              navigate={navigate}
-                              onSubmitAnswer={sendProgrammaticMessage}
-                            />
-                          );
-                        }
-
-                        if (action === "SHOW_MORE_3") {
-                          return (
-                            <ShowMore3Component
-                              key={pIdx}
-                              tridentResults={trident_results}
-                              sessionId={sessionId}
-                              locale={locale}
-                              navigate={navigate}
-                            />
-                          );
-                        }
-
-                        if (action === "NO_STOCK") {
-                          return (
-                            <NoStockComponent
-                              key={pIdx}
-                              locale={locale}
-                              onSubmitAnswer={sendProgrammaticMessage}
-                            />
-                          );
-                        }
-
-                        if (action === "FALLBACK") {
-                          return (
-                            <FallbackComponent
-                              key={pIdx}
-                              locale={locale}
-                            />
-                          );
-                        }
-
-                        if (action === "LISTING_ANSWER") {
-                          return (
-                            <ListingAnswerComponent
-                              key={pIdx}
-                              payload={payload}
-                              sessionId={sessionId}
-                              locale={locale}
-                              navigate={navigate}
-                            />
-                          );
-                        }
-
-                        // Gracefully ignore unknown actions to prevent UI crash
-                        console.warn("[FloatingChat] Unknown action received in custom-payload:", action);
-                        return null;
-                      }
-                      return null;
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Thinking / Running indicator */}
-            {isRunning && (
-              <div className="floating-chat-message-row floating-chat-message-row--assistant">
-                <div
-                  className="floating-chat-header__avatar"
-                  style={{ width: "24px", height: "24px", fontSize: "10px" }}
-                >
-                  <i className="fa-solid fa-robot"></i>
-                </div>
-                <div className="floating-chat-message-bubble floating-chat-message-bubble--assistant">
-                  <div className="chat-loading-dots">
-                    <div className="chat-loading-dot"></div>
-                    <div className="chat-loading-dot"></div>
-                    <div className="chat-loading-dot"></div>
-                  </div>
-                </div>
-              </div>
-            )}
+            <ChatMessagesView
+              messages={messages}
+              isRunning={isRunning}
+              sessionId={sessionId}
+              locale={locale}
+              navigate={navigate}
+              onProgrammaticMessage={handleProgrammaticMessage}
+            />
           </div>
 
           {/* Composer */}
@@ -728,18 +540,14 @@ export default function FloatingChat() {
                       handleSend();
                     }
                   }}
-                  placeholder={
-                    isLastMessageNeedInfo
-                      ? (isEs ? "Usa el formulario de arriba..." : "Use the form above...")
-                      : (isEs ? "Escribe un mensaje..." : "Type a message...")
-                  }
-                  disabled={isRunning || isLastMessageNeedInfo}
+                  placeholder={isEs ? "Escribe un mensaje..." : "Type a message..."}
+                  disabled={isRunning}
                   className="floating-chat-composer__input animate-fade-in ct_custom_scroll"
                 />
               </div>
               <button
                 type="submit"
-                disabled={isRunning || !composerText.trim() || isLastMessageNeedInfo}
+                disabled={isRunning || !composerText.trim()}
                 className="floating-chat-composer__send-btn"
                 title={isEs ? "Enviar" : "Send"}
               >

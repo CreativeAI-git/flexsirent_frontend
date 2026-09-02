@@ -101,7 +101,7 @@ const Header = () => {
                 isPreview={false}
                 data="ct_img_30"
                 image={
-                  profileData?.image || "https://app.flexsirent.com/user_profile.png"
+                  profileData?.image || "assets/img/user.png"
                 }
               />
               <div className="text-start">

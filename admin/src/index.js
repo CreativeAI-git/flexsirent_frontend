@@ -13,8 +13,6 @@ import {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // "homepage": "https://app.flexsirent.com/admin/",
-  // /admin
   <React.StrictMode>
     <BrowserRouter basename='/admin'>
       <Provider store={store}>

@@ -385,6 +385,14 @@
     justify-content: center;
   }
 
+  .inline-chat-composer__input {
+    height: 70px !important;
+  }
+
+  .inline-chat-composer__form {
+    align-items: center !important;
+  }
+
   .ct_banner_ai_toggle_wrap {
     right: auto;
     bottom: auto;
